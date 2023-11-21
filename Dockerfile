@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
 
 # Prepare files and folders
 
-RUN useradd -u 1001 speedtestuser 
 RUN mkdir -p /speedtest
 
 # Copy sources
