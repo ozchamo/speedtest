@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 
 # Prepare files and folders
 
-RUN mkdir -p /speedtest/
+RUN useradd -u 1001 speedtestuser 
+RUN mkdir -p /speedtest
 
 # Copy sources
 
@@ -30,7 +31,10 @@ COPY docker/servers.json /servers.json
 COPY docker/*.php /speedtest/
 COPY docker/entrypoint.sh /
 
-# Prepare environment variabiles defaults
+RUN useradd -u 1001 app \
+  && chown -R speedtestuser:speedtestuser /speedtest
+
+# Prepare environment variable defaults
 
 ENV TITLE=LibreSpeed
 ENV MODE=standalone
@@ -38,9 +42,8 @@ ENV PASSWORD=password
 ENV TELEMETRY=false
 ENV ENABLE_ID_OBFUSCATION=false
 ENV REDACT_IP_ADDRESSES=false
-ENV WEBPORT=80
+ENV WEBPORT=8080
 
 # Final touches
 
-EXPOSE 80
 CMD ["bash", "/entrypoint.sh"]
