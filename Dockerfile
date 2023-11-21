@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
 # Prepare files and folders
 
 RUN mkdir -p /speedtest
+RUN mkdir -p /database/
 
 # Copy sources
 
@@ -32,6 +33,7 @@ COPY docker/entrypoint.sh /
 
 RUN chown -R www-data:www-data /speedtest
 RUN chown -R www-data:www-data /etc/apache2
+RUN chown -R www-data:www-data /database
 
 # Prepare environment variable defaults
 

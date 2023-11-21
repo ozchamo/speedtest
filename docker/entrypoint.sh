@@ -2,8 +2,6 @@
 
 set -e
 set -x
-echo I am here
-whoami
 
 # Cleanup
 rm -rf /var/www/html/*
