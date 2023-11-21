@@ -30,8 +30,8 @@ COPY docker/servers.json /servers.json
 COPY docker/*.php /speedtest/
 COPY docker/entrypoint.sh /
 
-RUN useradd -u 1001 app \
-  && chown -R 1001:1001 /speedtest
+RUN chown -R www-data:www-data /speedtest
+RUN chown -R www-data:www-data /etc/apache2
 
 # Prepare environment variable defaults
 
@@ -44,5 +44,5 @@ ENV REDACT_IP_ADDRESSES=false
 ENV WEBPORT=8080
 
 # Final touches
-
+USER www-data
 CMD ["bash", "/entrypoint.sh"]

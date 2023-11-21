@@ -2,6 +2,8 @@
 
 set -e
 set -x
+echo I am here
+whoami
 
 # Cleanup
 rm -rf /var/www/html/*
@@ -11,7 +13,6 @@ cp /speedtest/*.js /var/www/html/
 
 # Copy favicon
 cp /speedtest/favicon.ico /var/www/html/
-sleep 120
 # Set up backend side for standlone modes
 if [ "$MODE" == "standalone" ]; then
   cp -r /speedtest/backend/ /var/www/html/backend
