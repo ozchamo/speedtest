@@ -31,7 +31,7 @@ COPY docker/*.php /speedtest/
 COPY docker/entrypoint.sh /
 
 RUN useradd -u 1001 app \
-  && chown -R speedtestuser:speedtestuser /speedtest
+  && chown -R 1001:1001 /speedtest
 
 # Prepare environment variable defaults
 
