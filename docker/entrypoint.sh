@@ -11,5 +11,6 @@ fi
 
 echo "Done, Starting APACHE"
 
+sleep 120 &
 # This runs apache
 apache2-foreground
