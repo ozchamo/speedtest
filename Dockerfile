@@ -42,4 +42,4 @@ ENV WEBPORT=8080
 
 # Final touches
 USER www-data
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash","/entrypoint.sh"]
