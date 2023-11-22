@@ -76,6 +76,7 @@ if [[ "$TELEMETRY" == "true" && ( "$MODE" == "frontend" || "$MODE" == "standalon
   chown www-data /database/
 fi
 
+sleep 300
 chown -R www-data /var/www/html/*
 
 # Allow selection of Apache port for network_mode: host
