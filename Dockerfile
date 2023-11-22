@@ -26,7 +26,6 @@ COPY favicon.ico /var/www/html/
 COPY docker/servers.json /servers.json
 
 COPY docker/*.php /var/www/html/
-COPY docker/entrypoint-standalone.sh /
 
 RUN chown -R www-data:www-data /var/www/html
 RUN chown -R www-data:www-data /etc/apache2
