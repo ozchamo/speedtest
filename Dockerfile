@@ -42,4 +42,4 @@ ENV WEBPORT=80
 
 # Final touches
 USER www-data
-CMD ["apache2-foreground"]
+ENTRYPOINT ["/entrypoint.sh"]
