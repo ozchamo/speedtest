@@ -13,27 +13,23 @@ RUN apt-get update && apt-get install -y \
 
 # Prepare files and folders
 
-RUN mkdir -p /speedtest
-RUN mkdir -p /database/
-
 # Copy sources
 
-COPY backend/ /speedtest/backend
+COPY backend/ /var/www/html/backend
 
-COPY results/*.php /speedtest/results/
-COPY results/*.ttf /speedtest/results/
+COPY results/*.php /var/www/html/results/
+COPY results/*.ttf /var/www/html/results/
 
-COPY *.js /speedtest/
-COPY favicon.ico /speedtest/
+COPY *.js /var/www/html/
+COPY favicon.ico /var/www/html/
 
 COPY docker/servers.json /servers.json
 
-COPY docker/*.php /speedtest/
-COPY docker/entrypoint.sh /
+COPY docker/*.php /var/www/html/
+COPY docker/entrypoint-standalone.sh /
 
-RUN chown -R www-data:www-data /speedtest
+RUN chown -R www-data:www-data /var/www/html
 RUN chown -R www-data:www-data /etc/apache2
-RUN chown -R www-data:www-data /database
 
 # Prepare environment variable defaults
 
@@ -43,8 +39,8 @@ ENV PASSWORD=password
 ENV TELEMETRY=false
 ENV ENABLE_ID_OBFUSCATION=false
 ENV REDACT_IP_ADDRESSES=false
-ENV WEBPORT=8080
+ENV WEBPORT=80
 
 # Final touches
 USER www-data
-CMD ["bash", "/entrypoint.sh"]
+CMD ["apache2-foreground"]
