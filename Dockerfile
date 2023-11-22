@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
 
 # Copy sources
 
+COPY docker/entrypoint.sh /
+
 COPY backend/ /var/www/html/backend
 
 COPY results/*.php /var/www/html/results/
@@ -41,5 +43,6 @@ ENV REDACT_IP_ADDRESSES=false
 ENV WEBPORT=8080
 
 # Final touches
+EXPOSE 8080
 USER www-data
 CMD ["bash","/entrypoint.sh"]
